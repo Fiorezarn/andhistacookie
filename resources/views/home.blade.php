@@ -22,7 +22,7 @@
     </div>
 
     
-<div id="product" class="relative w-full mt-10" data-carousel="slide">
+<div class="relative w-full mt-10" data-carousel="slide">
     <!-- Carousel wrapper -->
     <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
          <!-- Item 1 -->
@@ -64,12 +64,16 @@
         </span>
     </button>
 </div>
+</section>
 
-    
+    <section id="product">
+    <h1 class="mt-4 text-4xl font-bold text-center">Our Product</h1>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 m-10">
         @foreach ($product as $item)
         <div>
-            <img class="h-auto max-w-full rounded-lg" src="{{ url('fotokue/' . $item->photo) }}" alt="{{ $item->namakue }}">
+            <a href="/detailproduct/{{ $item->id }}">
+                <img class="h-auto max-w-full rounded-lg" src="{{ url('fotokue/' . $item->photo) }}" alt="{{ $item->namakue }}">
+            </a>
         </div>
         @endforeach
     </div>
