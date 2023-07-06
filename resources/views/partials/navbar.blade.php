@@ -38,6 +38,9 @@
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
+                        @if (Auth::user()->status == 1)
+                        <a href="/admin" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+                        @endif
                         <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign out</a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -55,7 +58,7 @@
                 <div class="flex items-center">
                     <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
                         <li>
-                            <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
+                            <a href="/" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
                         </li>
                         <li>
                             <a href="{{ url('/') }}#product" class="text-gray-900 dark:text-white hover:underline">Product</a>

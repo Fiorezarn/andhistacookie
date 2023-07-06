@@ -21,6 +21,8 @@ Route::get('/pembayaranproduct/{id}', [HomeController::class, 'pembayaranproduct
 Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran']);
 Route::get('/history', [HomeController::class, 'history']);
 
+
+Route::group(['middleware' => ['Auth', 'Admin']], function () {
 Route::get('/admin', [ProductController::class, 'index'])->name('admin');
 Route::get('/admin/add',[ProductController::class,'add']);
 Route::post('/admin/insert',[ProductController::class,'insert']);
@@ -28,6 +30,9 @@ Route::get('/admin/detailproduk/{id}',[ProductController::class, 'detail']);
 Route::get('/admin/edit/{id}',[ProductController::class,'edit']);
 Route::post('/admin/update/{id}',[ProductController::class,'update']);
 Route::get('/daftarpesanan',[ProductController::class,'pesanan']);
+});
+
+
 
 
 
