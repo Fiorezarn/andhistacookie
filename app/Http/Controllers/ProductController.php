@@ -12,6 +12,11 @@ class ProductController extends Controller
         $this->Product = new Product();
     }
 
+    public function pesanan()
+    {
+        return view('dashboard.pesanan');
+    }
+
     public function index()
     {
         $data = [

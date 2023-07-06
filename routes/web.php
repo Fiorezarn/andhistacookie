@@ -27,6 +27,9 @@ Route::post('/admin/insert',[ProductController::class,'insert']);
 Route::get('/admin/detailproduk/{id}',[ProductController::class, 'detail']);
 Route::get('/admin/edit/{id}',[ProductController::class,'edit']);
 Route::post('/admin/update/{id}',[ProductController::class,'update']);
+Route::get('/daftarpesanan',[ProductController::class,'pesanan']);
+
+
 
 
 Auth::routes();
