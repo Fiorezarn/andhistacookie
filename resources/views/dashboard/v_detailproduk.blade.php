@@ -37,7 +37,7 @@
     <tr>
         <th width="100px">Gambar</th>
         <th width="30px">:</th>
-        <th><img src="{{url('product-img/',$product->photo)}}" width="100px"></th>
+        <th><img src="{{url('fotokue/',$product->photo)}}" width="100px"></th>
     </tr>
     <tr>
         <th><a href="/admin" class="btn btn-success btn-sm">Back</a></th>

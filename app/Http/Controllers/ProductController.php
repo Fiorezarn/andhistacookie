@@ -79,7 +79,7 @@ class ProductController extends Controller
             abort(404);
         }
         $data = [
-            'produk'=> $this->Product->detailData($id),
+            'product'=> $this->Product->detailData($id),
         ];
         return view ('dashboard.v_editproduk', $data);
     }

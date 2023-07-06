@@ -76,7 +76,7 @@
                     <div class="col-sm-8">
                         <div class="form-group">
                             <label>Ganti Foto</label>
-                            <input type="file" name="photo" class="form-control" value="{{$moisturizer->photo}}">
+                            <input type="file" name="photo" class="form-control" value="{{$product->photo}}">
                                 <div class="text-danger">
                                         @error('photo')
                                             {{ $message }}
