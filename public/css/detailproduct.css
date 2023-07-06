@@ -1,0 +1,9 @@
+.detail-produk{
+    margin-top: 200px;
+    margin-bottom: 100px;
+}
+.img-produk img{
+    width: 650px;
+    margin-left: 30px;
+    border-radius: 10px;
+}

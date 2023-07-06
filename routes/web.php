@@ -29,3 +29,7 @@ Route::post('/admin/update/{id}',[ProductController::class,'update']);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/detailproduct', [HomeController::class, 'showproductdetail']);
+Route::get('/pembayaranproduct', [HomeController::class, 'pembayaranproduct']);
+Route::get('/history', [HomeController::class, 'history']);

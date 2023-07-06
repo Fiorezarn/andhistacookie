@@ -58,13 +58,16 @@
                             <a href="#" class="text-gray-900 dark:text-white hover:underline" aria-current="page">Home</a>
                         </li>
                         <li>
-                            <a href="#product" class="text-gray-900 dark:text-white hover:underline">Product</a>
+                            <a href="{{ url('/') }}#product" class="text-gray-900 dark:text-white hover:underline">Product</a>
                         </li>
                         <li>
-                            <a href="#about-us" class="text-gray-900 dark:text-white hover:underline">About Us</a>
+                            <a href="{{ url('/') }}#about-us" class="text-gray-900 dark:text-white hover:underline">About Us</a>
                         </li>
                         <li>
                             <a href="#contact-us" class="text-gray-900 dark:text-white hover:underline">Contact Us</a>
+                        </li>
+                        <li>
+                            <a href="/history" class="text-gray-900 dark:text-white hover:underline">History</a>
                         </li>
                     </ul>
                 </div>

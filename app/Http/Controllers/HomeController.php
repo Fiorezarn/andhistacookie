@@ -30,4 +30,28 @@ class HomeController extends Controller
         ];
         return view('home', $data);
     }
+
+    public function showproductdetail() 
+    {
+        $data = [
+            "product" => $this->Product->get()
+        ];
+        return view('detailproduct', $data);
+    }
+    
+    public function pembayaranproduct() 
+    {
+        $data = [
+            "product" => $this->Product->get()
+        ];
+        return view('pembayaran', $data);
+    }
+
+    public function history() 
+    {
+        $data = [
+            "product" => $this->Product->get()
+        ];
+        return view('history', $data);
+    }
 }
