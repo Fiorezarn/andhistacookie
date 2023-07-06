@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function insertpembayaran()
     {
         Request()->validate([
-            'id' => 'nullable|unique:products,id|min:1|max:6',
+            'id' => 'nullable|unique:orders,id|min:1|max:6',
             'namapenerima' => 'required',
             'namakue' => 'required',
             'totalitem' => 'required|integer',
