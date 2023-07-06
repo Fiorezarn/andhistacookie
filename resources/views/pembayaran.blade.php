@@ -25,23 +25,7 @@
                                     BCA
                                 </th>
                                 <td class="px-6 py-4">
-                                    33322212211
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    OVO
-                                </th>
-                                <td class="px-6 py-4">
-                                    0987657899816
-                                </td>
-                            </tr>
-                            <tr class="bg-white dark:bg-gray-800">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    BNI
-                                </th>
-                                <td class="px-6 py-4">
-                                    21111333221211
+                                    8820843984
                                 </td>
                             </tr>
                         </tbody>
@@ -61,29 +45,39 @@
                                 </th>
                             </tr>
                         </thead>
+                            <form action="/pembayaranproduct/insertpembayaran" method="POST" enctype="multipart/form-data">
+                                @csrf
                         <tbody>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Nama
+                                    Nama Penerima
                                 </th>
                                 <td class="px-6 py-4">
-                                    Adian Ali Pratama
+                                    <input type="text" name="namapenerima" placeholder="Nama Penerima" required>
+                                </td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Nama Kue
+                                </th>
+                                <td class="px-6 py-4">
+                                    <input type="text" name="namakue" value="{{ $product->namakue }}" readonly class="border-0">
+                                </td>
+                            </tr>                            
+                            <tr class="bg-white dark:bg-gray-800">
+                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    Harga
+                                </th>
+                                <td class="px-6 py-4">
+                                    Rp. {{ number_format($product->harga, 0, ',', '.') }}
                                 </td>
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Nama Kue Kering
-                                </th>
-                                <td class="px-6 py-4">
-                                    Nastar
-                                </td>
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     Total Item
                                 </th>
                                 <td class="px-6 py-4">
-                                    3
+                                    <input type="number" name="totalitem" placeholder="Total Item" value="1" required onchange="calculateTotal()">
                                 </td>
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
@@ -91,25 +85,26 @@
                                     Total Harga
                                 </th>
                                 <td class="px-6 py-4">
-                                    300000
+                                    Rp. <input type="text" id="totalHarga" name="totalharga" value="{{ number_format($product->harga, 0, ',', '.') }}" readonly>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody>              
                     </table>
-                     
+                    
                     <div class="ml-14">
                         <label for="message" class="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white">Masukan Alamat</label>
-                        <textarea id="message" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulisan Alamat Anda Disini..."></textarea>
+                        <textarea id="message" name="alamat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tulisan Alamat Anda Disini..." required></textarea>
                             
                         <label class="block my-2  text-sm font-medium text-gray-900 dark:text-white" for="multiple_files">Upload bukti transfer</label>
-                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" multiple>
+                        <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="buktipembayaran" required multiple>
                         
-                        <button type="button" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4">Konfirmasi Pembayaran</button>
+                        <button type="submit" data-modal-target="popup-modal" data-modal-toggle="popup-modal" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4">Konfirmasi Pembayaran</button>
                     </div>
+                </div>
             </div>
-        </div>
     </div>
-
+</form>
+    
 
     <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-md max-h-full">
@@ -131,5 +126,21 @@
     </div>
 </div>
 </section>
+
+<script>
+    function calculateTotal() {
+        const harga = parseFloat({{ $product->harga }});
+        let totalItem = parseFloat(document.getElementsByName('totalitem')[0].value);
+        
+        if (totalItem < 1) {
+            totalItem = 1; // Set total item to 1 if it's less than 1
+            document.getElementsByName('totalitem')[0].value = 1; // Update the input value
+        }
+
+        const totalHarga = harga * totalItem;
+        document.getElementById('totalHarga').value = totalHarga.toLocaleString('id-ID');
+    }
+</script>
+
 
 @endsection
