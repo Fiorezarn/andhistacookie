@@ -28,38 +28,10 @@
               <li class="dropdown notifications-menu">
               </li>
               <!-- Tasks: style can be found in dropdown.less -->
-              <li class="dropdown tasks-menu">
-                <a href="#">
-                  <ul class="dropdown-menu">
-                    <li>
-                      <!-- inner menu: contains the actual data -->
-                      <ul class="menu">
-                        <li><!-- Task item --></li>
-                        <!-- end task item -->
-                      </ul>
-                    </li>
                   </ul>
                 </a>
               </li>
               <!-- User Account: style can be found in dropdown.less -->
-              <li class="dropdown user user-menu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="{{ asset('template/') }}/dist/img/user1.png" class="user-image" alt="User Image">
-                  <span class="hidden-xs"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <!-- User image -->
-                  <!-- Menu Body -->
-                  <!-- /.row -->
-                  <!-- Menu Footer-->
-                  <li class="user-footer">
-                    {{-- <form action="{{ route('logout') }}" method="POST"> --}}
-                      @csrf
-                      <button type="submit" class="dropdown-item">
-                        Logout
-                      </button>
-                    </form>
-                  </li>
                 </ul>
               </li>
               <!-- Control Sidebar Toggle Button -->
