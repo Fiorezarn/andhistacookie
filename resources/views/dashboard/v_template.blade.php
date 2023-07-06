@@ -53,7 +53,7 @@
                   <!-- /.row -->
                   <!-- Menu Footer-->
                   <li class="user-footer">
-                    {{-- <form action="{{ route('logout') }}" method="POST"> --}}
+                    <form action="{{ route('logout') }}" method="POST">
                       @csrf
                       <button type="submit" class="dropdown-item">
                         Logout
@@ -81,48 +81,6 @@
         <!-- Main content -->
         <section class="content">
           @yield('content')
-          <a href="/admin/add" class="btn btn-primary btn-sm">Add</a> <br>
-            @if (session('pesan'))
-            <div class="alert alert-success alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4><i class="icon fa fa-check"></i> Success!</h4>
-                {{session('pesan')}}
-            </div>
-            @endif
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Id Produk</th>
-                        <th>Nama Kue</th>
-                        <th>Deskripsi</th>
-                        <th>Harga</th>
-                        <th>Stock</th>
-                        <th>Foto</th>
-                        <th width="200px">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                  @foreach ($product as $item)
-                  <tr>
-                      <th>{{ $item->no }}</th>
-                      <th>{{ $item->id }}</th>
-                      <th>{{ $item->namakue }}</th>
-                      <th>{{ $item->deskripsi }}</th>
-                      <th>{{ $item->harga }}</th>
-                      <th>{{ $item->stock }}</th>
-                      <td><img src="{{url('fotokue/',$item->photo)}}" width="100px"></td>
-                      <th>
-                        <a href="/admin/detailproduk/{{ $item->id }}" class="btn btn-sm btn-success">Detail</a>
-                        <a href="/admin/edit/{{ $item->id }}" class="btn btn-sm btn-warning">Edit</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ $item->id}}">
-                          Delete
-                        </button>
-                      </th>
-                  </tr>
-                  @endforeach
-              </tbody>
-            </table>
         </section>
       </div>
       <!-- <footer class="main-footer">
