@@ -8,42 +8,35 @@ use App\Models\Order;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $product;
+    private $order;
+
+    public function __construct(Product $product, Order $order)
     {
-        $this->Product = new Product();
+        $this->product = $product;
+        $this->order = $order;
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
-    public function showproduct() 
+    public function showproduct()
     {
         $data = [
-            "product" => $this->Product->get()
+            "product" => $this->product->get()
         ];
         return view('home', $data);
     }
 
-    public function showproductdetail($id) 
+    public function showproductdetail($id)
     {
         $data = [
-            "product" => $this->Product->detailData($id)
+            "product" => $this->product->detailData($id)
         ];
         return view('detailproduct', $data);
     }
-    
-    public function pembayaranproduct($id) 
+
+    public function pembayaranproduct($id)
     {
         $data = [
-            "product" => $this->Product->detailData($id)
+            "product" => $this->product->detailData($id)
         ];
         return view('pembayaran', $data);
     }
@@ -51,24 +44,22 @@ class HomeController extends Controller
     public function insertpembayaran()
     {
         Request()->validate([
-            'id' => 'nullable|unique:orders,id|min:1|max:6',
             'namapenerima' => 'required',
             'namakue' => 'required',
             'totalitem' => 'required|integer',
             'totalharga' => 'required|integer',
             'alamat' => 'required',
             'buktipembayaran' => 'required|mimes:jpg,jpeg,png,webp|max:1000',
-        ],[
+        ], [
             'id.required' => 'wajib diisi !!',
             'id.unique' => 'id Sudah Ada !!',
             'id.min' => 'Min 1 Karakter',
             'id.max' => 'Max 6 Karakter',
         ]);
 
-        //jika validasi tidak ada maka lakukan simpan data
-        //upload photo
-        $file = Request()-> buktipembayaran;
-        $fileName = Request()->namapenerima.'.'.$file->extension();
+        // Upload foto
+        $file = Request()->file('buktipembayaran');
+        $fileName = Request()->namapenerima . '.' . $file->extension();
         $file->move(public_path('buktipembayaran'), $fileName);
 
         $data = [
@@ -81,14 +72,15 @@ class HomeController extends Controller
             'buktipembayaran' => $fileName,
         ];
 
-        $this->Order->addDataOrder($data);
-        return redirect()->route('pembayaranproduk');
+
+        $this->order->addData($data);
+        return redirect()->route('showproduk')->with('pesan','Data Berhasil Di Tambahkan !!');
     }
 
-    public function history() 
+    public function history()
     {
         $data = [
-            "product" => $this->Product->get()
+            "product" => $this->product->get()
         ];
         return view('history', $data);
     }
