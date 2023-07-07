@@ -1,7 +1,7 @@
 @extends('layouts.app')
-
+@section('css', '/css/ResetPassword.css')
 @section('content')
-<div class="container">
+<div class="container resetpass">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -32,8 +32,8 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-6 offset-md-4 button">
+                                <button type="submit" class="button">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>

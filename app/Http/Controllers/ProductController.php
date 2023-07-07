@@ -107,7 +107,7 @@ class ProductController extends Controller
         //jika ingin ganti foto
         //upload photo
         $file = Request()-> photo;
-        $fileName = Request()->namakue.'.'.$file->extension();
+        $fileName = Request()->id.'.'.$file->extension();
         $file->move(public_path('fotokue'), $fileName);
 
         $data = [
@@ -177,5 +177,18 @@ class ProductController extends Controller
         }
         $this->Order->deleteDataOrder($id);
         return redirect()->route('daftarpesanan')->with('pesan', 'Data berhasil di hapus');
+    }
+
+    public function updatestatus($id)
+    {
+        $validated = Request()->validate([
+            "status_pembayaran" => "required|in:Menunggu Pembayaran,Pembayaran Diterima,Pembayaran Ditolak",
+        ]);
+
+        $order = Order::find($id);
+        $order->status_pembayaran = Request()->status_pembayaran;
+        $order->save();
+
+        return back()->with("pesan", "Status berhasil diperbarui");
     }
 }
