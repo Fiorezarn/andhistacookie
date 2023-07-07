@@ -15,10 +15,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'showproduct']);
+Route::get('/', [HomeController::class, 'showproduct'])->name('showproduk');
 Route::get('/detailproduct/{id}', [HomeController::class, 'showproductdetail']);
 Route::get('/pembayaranproduct/{id}', [HomeController::class, 'pembayaranproduct'])->name('pembayaranproduk');
-Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran']);
+Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran'])->name('bayarproduk');
 Route::get('/history', [HomeController::class, 'history']);
 
 
