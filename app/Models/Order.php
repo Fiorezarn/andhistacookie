@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
-    protected $fillable = ['namapenerima', 'nohp', 'namakue', 'totalitem', 'totalharga', 'alamat', 'buktipembayaran'];
+    protected $fillable = ['namapenerima', 'nohp', 'namakue', 'totalitem', 'totalharga', 'alamat', 'buktipembayaran', 'status_pembayaran'];
 
     public function allData()
     {
@@ -34,5 +34,9 @@ class Order extends Model
         DB::table('orders')
             ->where('id', $id)
             ->delete();
+    }
+    public function editData($id, $data)
+    {
+        return DB::table('orders')->where('id', $id)->update($data);
     }
 }

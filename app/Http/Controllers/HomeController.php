@@ -17,7 +17,9 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->Product = new Product();
+        $this->product = new Product();
+        $this->order = new Order();
+        
     }
 
     public function showproduct()
@@ -48,7 +50,7 @@ class HomeController extends Controller
     {
         Request()->validate([
             'namapenerima' => 'required',
-            'nohp' => 'required|integer',
+            'nohp' => 'required',
             'namakue' => 'required',
             'totalitem' => 'required|integer',
             'totalharga' => 'required|integer',
@@ -67,6 +69,8 @@ class HomeController extends Controller
         $fileName = Request()->namapenerima.'.'.$file->extension();
         $file->move(public_path('buktipembayaran'), $fileName);
 
+        $userId = auth()->user()->id;
+
         $data = [
             'id' => Request()->id,
             'id_user' => $userId,
@@ -79,8 +83,8 @@ class HomeController extends Controller
             'buktipembayaran' => $fileName,
         ];
 
-        $this->Order->addDataOrder($data);
-        return redirect()->route('pembayaranproduk');
+        $this->order->addData($data);
+        return redirect()->route('history')->with('pesan', 'Data Berhasil Ditambahkan !!');
     }
 
     public function history()
@@ -88,7 +92,7 @@ class HomeController extends Controller
         $userId = auth()->user()->id;
 
         $data = [
-            "product" => $this->Product->get()
+            "order" => $this->order->get()
         ];
         
         return view('history', $data);

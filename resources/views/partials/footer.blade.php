@@ -12,13 +12,13 @@
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Navigation</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
                       <li class="mb-4">
-                          <a href="#home" class="hover:underline">Home</a>
+                          <a href="{{ url('/') }}#home" class="hover:underline">Home</a>
                       </li>
                       <li class="mb-4">
-                          <a href="#product" class="hover:underline">Product</a>
+                          <a href="{{ url('/') }}#product" class="hover:underline">Product</a>
                       </li>
                        <li>
-                          <a href="#about-us" class="hover:underline">About Us</a>
+                          <a href="{{ url('/') }}#about-us" class="hover:underline">About Us</a>
                       </li>
                   </ul>
               </div>

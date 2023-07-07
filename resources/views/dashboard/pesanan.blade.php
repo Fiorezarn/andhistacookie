@@ -74,12 +74,13 @@
                     <th>{{$item->alamat}}</th>
                     <th><img src="{{url('buktipembayaran/',$item->buktipembayaran)}}" width="100px"></th>
                     <th>{{$item->status_pembayaran}}</th>
-                    {{-- <td>
+                     <td>
+                      
                         <div class="btn-group">
                           <button type="button" class="btn
                             @if ($item->status_pembayaran == 'Menunggu Pembayaran') btn-warning
-                            @elseif ($item->status_pembayaran == 'Pembayaran Diterima') btn-secondary
-                            @elseif ($item->status_pembayaran == 'Pembayaran Ditolak') btn-success
+                            @elseif ($item->status_pembayaran == 'Pembayaran Diterima') btn-success
+                            @elseif ($item->status_pembayaran == 'Pembayaran Ditolak') btn-danger
                             @endif
                             btn-sm dropdown-toggle py-0 px-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             @if ($item->status_pembayaran == 'Menunggu Pembayaran')
@@ -88,19 +89,20 @@
                             Pembayaran Diterima
                             @elseif ($item->status_pembayaran == 'Pembayaran Ditolak')
                             Pembayaran Ditolak
+                            @endif
                           </button>
                           
                           <div class="dropdown-menu">
-                            <form action="{{ route('update', $item->first()->id) }}" method="POST" enctype="multipart/form-data">
-                                @method('patch')
-                                @csrf
-                                <button type="submit" name="status" value="Menunggu Pembayaran" class="dropdown-item"  {{ $item->status_pembayaran === 'Menunggu Pembayaran' ? 'selected' : '' }} >Menunggu Pembayaran</button>
-                                <button type="submit" name="status" value="Pembayaran Diterima" class="dropdown-item"  {{ $item->status_pembayaran === 'Pembayaran Diterima' ? 'selected' : '' }}>Pembayaran Diterima</button>
-                                <button type="submit" name="status" value="Pembayaran Ditolak" class="dropdown-item"  {{ $item->status_pembayaran === 'Pembayaran Ditolak' ? 'selected' : '' }}>Pembayaran Ditolak</button>
+                            <form action="{{ route('updatestatus', $item->id) }}" method="POST" enctype="multipart/form-data">
+                              @method('PATCH')
+                              @csrf
+                              <button type="submit" name="status_pembayaran" value="Menunggu Pembayaran" class="dropdown-item btn btn-warning">Menunggu Pembayaran</button>
+                              <button type="submit" name="status_pembayaran" value="Pembayaran Diterima" class="dropdown-item btn btn-success">Pembayaran Diterima</button>
+                              <button type="submit" name="status_pembayaran" value="Pembayaran Ditolak" class="dropdown-item btn btn-danger">Pembayaran Ditolak</button>
                             </form>
                           </div>
                         </div>
-                      </td> --}}
+                      </td> 
                     <th>
                     <a href="/daftarpesanan/detail/{{ $item->id }}" class="btn btn-sm btn-success">Detail</a>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ $item->id}}">
@@ -135,9 +137,6 @@
         @endforeach
         </section>
       </div>
-      <!-- <footer class="main-footer">
-        <strong>Batary 2023.</strong> All rights reserved.
-      </footer> -->
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">

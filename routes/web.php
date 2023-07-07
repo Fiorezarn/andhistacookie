@@ -18,7 +18,7 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'showproduct'])->name('showproduct');
 Route::get('/detailproduct/{id}', [HomeController::class, 'showproductdetail']);
 Route::get('/pembayaranproduct/{id}', [HomeController::class, 'pembayaranproduct'])->name('pembayaranproduk');
-Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran']);
+Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran'])->name('bayarproduk');
 Route::get('/history', [HomeController::class, 'history'])->name('history');
 
 
@@ -33,6 +33,8 @@ Route::get('/admin/delete/{id}',[ProductController::class,'delete']);
 Route::get('/daftarpesanan',[ProductController::class,'showorder'])->name('daftarpesanan');
 Route::get('/daftarpesanan/detail/{id}',[ProductController::class,'detailorder']);
 Route::get('/daftarpesanan/delete/{id}',[ProductController::class,'deletepesanan']);
+Route::patch('/updatestatus/{id}', [ProductController::class, 'updatestatus'])->name('updatestatus');
+
 });
 
 

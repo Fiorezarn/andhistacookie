@@ -16,7 +16,7 @@
                     <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Andhista Cookie</span>
                 </a>
                 <div class="flex items-center">
-                    <a href="tel:5541251234" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">+62 812-8247-7582 </a>
+                    <a href="https://wa.me/081282477582?text=Halo,%20saya%20ingin%20tahu%20lebih%20banyak%20tentang%20layanan%20Anda,%20Bisakah%20membantuku?" class="mr-6 text-sm  text-gray-500 dark:text-white hover:underline">+62 812-8247-7582 </a>
                     
                     @guest
                         @if (Route::has('login'))
