@@ -47,6 +47,92 @@
         <!-- Main content -->
         <section class="content">
           @yield('content')
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id Pesanan</th>
+                    <th>Id User</th>
+                    <th>Nama Penerima</th>
+                    <th>Nama Kue</th>
+                    <th>Total Item</th>
+                    <th>Total Harga</th>
+                    <th>Alamat</th>
+                    <th>Bukti Pembayaran</th>
+                    <th>Status</th>
+                    <th width="200px">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+              @foreach ($order as $item)
+              <tr>
+                    <th>{{$item->id}}</th>
+                    <th>{{$item->id_user}}</th>
+                    <th>{{$item->namapenerima}}</th>
+                    <th>{{$item->namakue}}</th>
+                    <th>{{$item->totalitem}}</th>
+                    <th>{{$item->totalharga}}</th>
+                    <th>{{$item->alamat}}</th>
+                    <th><img src="{{url('buktipembayaran/',$item->buktipembayaran)}}" width="100px"></th>
+                    <th>{{$item->status_pembayaran}}</th>
+                    {{-- <td>
+                        <div class="btn-group">
+                          <button type="button" class="btn
+                            @if ($item->status_pembayaran == 'Menunggu Pembayaran') btn-warning
+                            @elseif ($item->status_pembayaran == 'Pembayaran Diterima') btn-secondary
+                            @elseif ($item->status_pembayaran == 'Pembayaran Ditolak') btn-success
+                            @endif
+                            btn-sm dropdown-toggle py-0 px-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @if ($item->status_pembayaran == 'Menunggu Pembayaran')
+                            Menunggu Pembayaran
+                            @elseif ($item->status_pembayaran == 'Pembayaran Diterima')
+                            Pembayaran Diterima
+                            @elseif ($item->status_pembayaran == 'Pembayaran Ditolak')
+                            Pembayaran Ditolak
+                          </button>
+                          
+                          <div class="dropdown-menu">
+                            <form action="{{ route('update', $item->first()->id) }}" method="POST" enctype="multipart/form-data">
+                                @method('patch')
+                                @csrf
+                                <button type="submit" name="status" value="Menunggu Pembayaran" class="dropdown-item"  {{ $item->status_pembayaran === 'Menunggu Pembayaran' ? 'selected' : '' }} >Menunggu Pembayaran</button>
+                                <button type="submit" name="status" value="Pembayaran Diterima" class="dropdown-item"  {{ $item->status_pembayaran === 'Pembayaran Diterima' ? 'selected' : '' }}>Pembayaran Diterima</button>
+                                <button type="submit" name="status" value="Pembayaran Ditolak" class="dropdown-item"  {{ $item->status_pembayaran === 'Pembayaran Ditolak' ? 'selected' : '' }}>Pembayaran Ditolak</button>
+                            </form>
+                          </div>
+                        </div>
+                      </td> --}}
+                    <th>
+                    <a href="/daftarpesanan/detail/{{ $item->id }}" class="btn btn-sm btn-success">Detail</a>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete{{ $item->id}}">
+                      Delete
+                    </button>
+                  </th>
+              </tr>
+              @endforeach
+          </tbody>
+        </table>
+        @foreach ($order as $data)
+        <div class="modal modal-danger fade" id="delete{{ $data->id}}">
+              <div class="modal-dialog modal-sm" >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{$data->namapenerima }}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>Apakah Anda Yakin Ingin Menghapus Pesanan Ini?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">No</button>
+                    <a href="/daftarpesanan/delete/{{ $data->id}}" class="btn btn-outline">Yes</a>
+                  </div>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
+        @endforeach
         </section>
       </div>
       <!-- <footer class="main-footer">

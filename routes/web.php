@@ -15,11 +15,11 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'showproduct']);
+Route::get('/', [HomeController::class, 'showproduct'])->name('showproduct');
 Route::get('/detailproduct/{id}', [HomeController::class, 'showproductdetail']);
 Route::get('/pembayaranproduct/{id}', [HomeController::class, 'pembayaranproduct'])->name('pembayaranproduk');
 Route::post('/pembayaranproduct/insertpembayaran', [HomeController::class, 'insertpembayaran']);
-Route::get('/history', [HomeController::class, 'history']);
+Route::get('/history', [HomeController::class, 'history'])->name('history');
 
 
 Route::group(['middleware' => ['Auth', 'Admin']], function () {
@@ -29,12 +29,11 @@ Route::post('/admin/insert',[ProductController::class,'insert']);
 Route::get('/admin/detailproduk/{id}',[ProductController::class, 'detail']);
 Route::get('/admin/edit/{id}',[ProductController::class,'edit']);
 Route::post('/admin/update/{id}',[ProductController::class,'update']);
-Route::get('/daftarpesanan',[ProductController::class,'pesanan']);
+Route::get('/admin/delete/{id}',[ProductController::class,'delete']);
+Route::get('/daftarpesanan',[ProductController::class,'showorder'])->name('daftarpesanan');
+Route::get('/daftarpesanan/detail/{id}',[ProductController::class,'detailorder']);
+Route::get('/daftarpesanan/delete/{id}',[ProductController::class,'deletepesanan']);
 });
-
-
-
-
 
 
 Auth::routes();

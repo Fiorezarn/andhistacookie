@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
     public function __construct()
     {
         $this->Product = new Product();
-    }
-
-    public function pesanan()
-    {
-        return view('dashboard.pesanan');
+        $this->Order = new Order();
     }
 
     public function index()
@@ -137,5 +134,48 @@ class ProductController extends Controller
             $this->Product->editData($id, $data);
         }
         return redirect()->route('admin')->with('pesan','Data Berhasil Di Update !!');
+    }
+
+    public function delete($id)
+    {
+        // hapus foto
+        $produk=$this ->Product->detailData($id);
+        if($produk -> photo <>""){
+            unlink(public_path('fotokue').'/'.$produk -> photo);
+        }
+        $this->Product->deleteData($id);
+        return redirect()->route('admin')->with('pesan', 'Data berhasil di hapus');
+    }
+
+    /////////////////////////////////////////////////Order//////////////////////////////
+
+    public function showorder()
+    {
+        $data = [
+            'order' => $this->Order->allData()
+        ];
+        return view('dashboard.pesanan', $data);
+    }
+
+    public function detailorder($id)
+    {
+        if (!$this->Order->detailDataOrder($id)) {
+            abort(404);
+        }
+        $data = [
+            'order'=> $this->Order->detailDataOrder($id),
+        ];
+        return view('dashboard.detailpesanan', $data);
+    }
+
+    public function deletepesanan($id)
+    {
+        // hapus foto
+        $order=$this ->Order->detailDataOrder($id);
+        if($order -> buktipembayaran <>""){
+            unlink(public_path('buktipembayaran').'/'.$order -> buktipembayaran);
+        }
+        $this->Order->deleteDataOrder($id);
+        return redirect()->route('daftarpesanan')->with('pesan', 'Data berhasil di hapus');
     }
 }

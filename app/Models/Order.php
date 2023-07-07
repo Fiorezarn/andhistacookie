@@ -8,8 +8,31 @@ use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
-    public function addDataOrder($data)
+    protected $fillable = ['namapenerima', 'nohp', 'namakue', 'totalitem', 'totalharga', 'alamat', 'buktipembayaran'];
+
+    public function allData()
+    {
+        return DB::table('orders')->get();
+    }
+
+    public function detailDataOrder($id)
+    {
+        return DB::table('orders')->where('id', $id)->first();
+    }
+
+    public function addData($data)
     {
         return DB::table('orders')->insert($data);
+    }
+
+    public function product(){
+        return $this->belongsTo('App\Models\Product');
+    }
+
+    public function deleteDataOrder($id)
+    {
+        DB::table('orders')
+            ->where('id', $id)
+            ->delete();
     }
 }

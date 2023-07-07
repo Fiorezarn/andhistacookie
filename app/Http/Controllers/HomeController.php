@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
@@ -13,10 +15,14 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    private $product;
+    private $order;
+
+    public function __construct(Product $product, Order $order)
     {
-        $this->Product = new Product();
-    }
+        $this->Product = $product;
+        $this->Order=$order;
+}
 
     /**
      * Show the application dashboard.
@@ -51,29 +57,32 @@ class HomeController extends Controller
     public function insertpembayaran()
     {
         Request()->validate([
-            'id' => 'nullable|unique:orders,id|min:1|max:6',
             'namapenerima' => 'required',
+            'nohp' => 'required|integer',
             'namakue' => 'required',
             'totalitem' => 'required|integer',
             'totalharga' => 'required|integer',
             'alamat' => 'required',
             'buktipembayaran' => 'required|mimes:jpg,jpeg,png,webp|max:1000',
-        ],[
+        ], [
             'id.required' => 'wajib diisi !!',
             'id.unique' => 'id Sudah Ada !!',
             'id.min' => 'Min 1 Karakter',
             'id.max' => 'Max 6 Karakter',
         ]);
 
-        //jika validasi tidak ada maka lakukan simpan data
-        //upload photo
-        $file = Request()-> buktipembayaran;
-        $fileName = Request()->namapenerima.'.'.$file->extension();
+        $userId = Auth::id(); 
+
+        // Upload foto
+        $file = Request()->file('buktipembayaran');
+        $fileName = Request()->namapenerima . '.' . $file->extension();
         $file->move(public_path('buktipembayaran'), $fileName);
 
         $data = [
             'id' => Request()->id,
+            'id_user' => $userId,
             'namapenerima' => Request()->namapenerima,
+            'nohp' => Request()->nohp,
             'namakue' => Request()->namakue,
             'totalitem' => Request()->totalitem,
             'totalharga' => Request()->totalharga,
@@ -81,15 +90,20 @@ class HomeController extends Controller
             'buktipembayaran' => $fileName,
         ];
 
-        $this->Order->addDataOrder($data);
-        return redirect()->route('pembayaranproduk');
+        dd($data);
+        // $Data['user_id'] = auth()->user()->id; 
+        // $this->Order->addData($data);
+        // return redirect()->route('history')->with('pesan','Data Berhasil Di Tambahkan !!');
     }
 
     public function history() 
     {
+        $userId = auth()->user()->id;
+
         $data = [
-            "product" => $this->Product->get()
+            'order' => $this->Order->where('id_user',  $userId)->get(),
         ];
+        
         return view('history', $data);
     }
 }
