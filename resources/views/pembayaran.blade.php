@@ -5,8 +5,7 @@
 <section class="detail-pembayaran">
     <div class="container">
         <div class="row" >
-            <div class="col-md-5 pembayaran">
-                                
+            <div class="col-md-5 pembayaran">                
                 <div class="relative">
                     <table class="w-full ml-14 text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -34,6 +33,8 @@
             </div>
             <div class="col-md-5 text-justify">
             <div class="relative ml-10">
+            <form action="{{ route('bayarproduk') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <table class="w-full ml-14 text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
@@ -45,8 +46,7 @@
                                 </th>
                             </tr>
                         </thead>
-                            <form action="/pembayaranproduct/insertpembayaran" method="POST" enctype="multipart/form-data">
-                                @csrf
+                           
                         <tbody>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" for="namapenerima">
@@ -98,6 +98,7 @@
                             </tr>
                         </tbody>              
                     </table>
+
                     
                     <div class="ml-14">
                         <label for="message" class="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white" for="alamat">Masukan Alamat</label>
@@ -105,13 +106,13 @@
                             
                         <label class="block my-2  text-sm font-medium text-gray-900 dark:text-white" for="multiple_files" for="buktipembayaran">Upload bukti transfer</label>
                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="buktipembayaran" required multiple>
-                        
                         <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4">Konfirmasi Pembayaran</button>
                     </div>
+                    </form>
                 </div>
             </div>
     </div>
-</form>
+
     
 
     <div id="popup-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">

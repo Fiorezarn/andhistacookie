@@ -30,4 +30,8 @@ class Product extends Model
             ->where('id', $id)
             ->delete();
     }
+    public function orders()
+    {
+        return $this->hasMany('App\Models\Order');
+    }
 }

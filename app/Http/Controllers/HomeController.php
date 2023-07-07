@@ -15,41 +15,31 @@ class HomeController extends Controller
      *
      * @return void
      */
-    private $product;
-    private $order;
-
-    public function __construct(Product $product, Order $order)
+    public function __construct()
     {
-        $this->Product = $product;
-        $this->Order=$order;
-}
+        $this->Product = new Product();
+    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-
-    public function showproduct() 
+    public function showproduct()
     {
         $data = [
-            "product" => $this->Product->get()
+            "product" => $this->product->get()
         ];
         return view('home', $data);
     }
 
-    public function showproductdetail($id) 
+    public function showproductdetail($id)
     {
         $data = [
-            "product" => $this->Product->detailData($id)
+            "product" => $this->product->detailData($id)
         ];
         return view('detailproduct', $data);
     }
-    
-    public function pembayaranproduct($id) 
+
+    public function pembayaranproduct($id)
     {
         $data = [
-            "product" => $this->Product->detailData($id)
+            "product" => $this->product->detailData($id)
         ];
         return view('pembayaran', $data);
     }
@@ -71,11 +61,10 @@ class HomeController extends Controller
             'id.max' => 'Max 6 Karakter',
         ]);
 
-        $userId = Auth::id(); 
-
-        // Upload foto
-        $file = Request()->file('buktipembayaran');
-        $fileName = Request()->namapenerima . '.' . $file->extension();
+        //jika validasi tidak ada maka lakukan simpan data
+        //upload photo
+        $file = Request()-> buktipembayaran;
+        $fileName = Request()->namapenerima.'.'.$file->extension();
         $file->move(public_path('buktipembayaran'), $fileName);
 
         $data = [
@@ -90,18 +79,16 @@ class HomeController extends Controller
             'buktipembayaran' => $fileName,
         ];
 
-        dd($data);
-        // $Data['user_id'] = auth()->user()->id; 
-        // $this->Order->addData($data);
-        // return redirect()->route('history')->with('pesan','Data Berhasil Di Tambahkan !!');
+        $this->Order->addDataOrder($data);
+        return redirect()->route('pembayaranproduk');
     }
 
-    public function history() 
+    public function history()
     {
         $userId = auth()->user()->id;
 
         $data = [
-            'order' => $this->Order->where('id_user',  $userId)->get(),
+            "product" => $this->Product->get()
         ];
         
         return view('history', $data);
