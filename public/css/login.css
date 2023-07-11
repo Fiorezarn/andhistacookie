@@ -71,7 +71,6 @@ body{
 	margin-bottom:15px;
 }
 .login-space .group .label,
-.login-space .group .input,
 .login-space .group .button{
 	width:100%;
 	color:#fff;
@@ -82,11 +81,17 @@ body{
 	border:none;
 	padding:15px 20px;
 	border-radius:25px;
-	background:rgba(255,255,255,.1);
 }
 .login-space .group input[data-type="password"]{
 	text-security:circle;
 	-webkit-text-security:circle;
+	color: black;
+}
+
+.login-space .group .input{
+	width:100%;
+	display:block;
+	color: black;
 }
 .login-space .group .label{
 	color:#aaa;

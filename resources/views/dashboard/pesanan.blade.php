@@ -73,7 +73,6 @@
                     <th>{{$item->totalharga}}</th>
                     <th>{{$item->alamat}}</th>
                     <th><img src="{{url('buktipembayaran/',$item->buktipembayaran)}}" width="100px"></th>
-                    <th>{{$item->status_pembayaran}}</th>
                      <td>
                       
                         <div class="btn-group">

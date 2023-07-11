@@ -33,7 +33,7 @@
             </div>
             <div class="col-md-5 text-justify">
             <div class="relative ml-10">
-            <form action="{{ route('bayarproduk') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('bayarproduk') }}" method="POST" enctype="multipart/form-data" onsubmit="return validatePhoneNumber()">
                     @csrf
                     <table class="w-full ml-14 text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,7 +61,7 @@
                                     Nomor HP
                                 </th>
                                 <td class="px-6 py-4">
-                                    <input type="number" name="nohp" placeholder="Nomor HP" required>
+                                    <input type="number" id="nohp" name="nohp" placeholder="Nomor HP" required>
                                 </td>
                             </tr>
                             <tr class="bg-white dark:bg-gray-800">
@@ -98,7 +98,6 @@
                             </tr>
                         </tbody>              
                     </table>
-
                     
                     <div class="ml-14">
                         <label for="message" class="block mt-4 mb-2 text-sm font-medium text-gray-900 dark:text-white" for="alamat">Masukan Alamat</label>
@@ -106,7 +105,13 @@
                             
                         <label class="block my-2  text-sm font-medium text-gray-900 dark:text-white" for="multiple_files" for="buktipembayaran">Upload bukti transfer</label>
                         <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="multiple_files" type="file" name="buktipembayaran" required multiple>
-                        <button type="submit" class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 my-4">Konfirmasi Pembayaran</button>
+                    
+                        <!-- validasi no HP -->
+                        <div id="validasihp">
+                              
+                        </div>      
+
+                        <button type="submit" class="text-white mt-4 bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2">Konfirmasi Pembayaran</button>
                     </div>
                     </form>
                 </div>
@@ -149,6 +154,28 @@
         const totalHarga = harga * totalItem;
         document.getElementById('totalHarga').value = totalHarga;
     }
+
+    function validatePhoneNumber() {
+    const phoneNumber = document.getElementsByName('nohp')[0].value;
+    const containervalidasi = document.getElementById('validasihp');
+
+    if (phoneNumber.length < 11 || phoneNumber.length > 13) {
+        containervalidasi.innerHTML = `
+            <div class="flex items-center my-2 p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">Invalid phone number!</span> Please enter a phone number with a length between 11 and 13 characters.
+                </div>
+            </div>`;
+        return false;
+    }
+
+    containervalidasi.innerHTML = ''; // Clear the validation message if the phone number is valid
+    return true;
+}
 </script>
 
 

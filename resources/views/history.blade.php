@@ -5,6 +5,7 @@
 <section class="history">
     
 <div class="relative overflow-x-auto tabel-history">
+    
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
@@ -28,7 +29,11 @@
                  </th>
             </tr>
         </thead>
+        
+  @if(auth()->check())
         <tbody>
+        @auth
+        @if($order-> count() > 0)
             @foreach ($order as $history)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -51,7 +56,16 @@
                 </td>
             </tr>
             @endforeach
+            @else
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    Tidak ada history transaksi. Silahkan Kunjungi Product kami. 
+                </th>
+            </tr>
+            @endif
         </tbody>
+        @endauth
+    @endif
     </table>
 </div>
 

@@ -92,7 +92,7 @@ class HomeController extends Controller
         $userId = auth()->user()->id;
 
         $data = [
-            "order" => $this->order->get()
+            "order" => $this->order->where('id_user',  $userId)->get(),
         ];
         
         return view('history', $data);
