@@ -70,7 +70,12 @@
                             <a href="#contact-us" class="text-gray-900 dark:text-white hover:underline">Contact Us</a>
                         </li>
                         <li>
+                        @auth
                             <a href="/history" class="text-gray-900 dark:text-white hover:underline">History</a>
+                        @else
+                            <a href="{{ route('login') }}" class="text-gray-900 dark:text-white hover:underline">History</a>
+                        @endauth
+
                         </li>
                     </ul>
                 </div>
