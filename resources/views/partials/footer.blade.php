@@ -7,16 +7,7 @@
                   <span class="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">Andhista Cookie</span>
               </a>
           </div>
-          <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
-                <div>
-                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Location</h2>
-                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                      <li class="mb-4">
-                          <i class="fas fa-map-marked-alt fa-lg"></i>
-                          <a  class="ml-2">+62 812-8247-7582</a>
-                      </li>
-                  </ul>
-              </div>
+          <div class="grid ml-40 grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                 <div>
                   <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Contact us</h2>
                   <ul class="text-gray-500 dark:text-gray-400 font-medium">
@@ -48,7 +39,16 @@
                       </li>
                   </ul>
               </div>
-              
+
+              <div>
+                  <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Location</h2>
+                  <ul class="text-gray-500 dark:text-gray-400 font-medium">
+                      <li class="mb-4">
+                          <i class="fas fa-map-marked-alt fa-lg"></i>
+                          <a  class="ml-2">Jl Untung Suropati, Gg Arikin No. 22,  Pabuaran, Cimone Jaya,  Karawaci, Kota Tangerang.</a>
+                      </li>
+                  </ul>
+              </div>
           </div>
       </div>
       <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Andhista Cookie</title>
 
     <link rel="stylesheet" href="@yield('css')">
     <!-- Fonts -->
