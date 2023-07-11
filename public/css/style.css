@@ -1,3 +1,5 @@
+
+
 /* jumbotron */
 .jumbotron{
     background: url("../img/jumbotron.jpg") top center;
@@ -13,4 +15,8 @@
 }
 .kue-header h3{
     color: rgb(81, 81, 81);
+}
+.img-product img{
+    width: 500px;
+    max-height: 250px;
 }

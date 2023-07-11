@@ -53,7 +53,7 @@
                                     Nama Penerima
                                 </th>
                                 <td class="px-6 py-4">
-                                    <input type="text" name="namapenerima" placeholder="Nama Penerima" required>
+                                    <input type="text" id="namapenerima" name="namapenerima" placeholder="Nama Penerima" required>
                                 </td>
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -157,7 +157,22 @@
 
     function validatePhoneNumber() {
     const phoneNumber = document.getElementsByName('nohp')[0].value;
+    const name = document.getElementsByName('namapenerima')[0].value;
     const containervalidasi = document.getElementById('validasihp');
+
+    if (/\d/.test(name)) {
+        containervalidasi.innerHTML = `
+            <div class="flex items-center my-2 p-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                <svg class="flex-shrink-0 inline w-4 h-4 mr-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                </svg>
+                <span class="sr-only">Info</span>
+                <div>
+                    <span class="font-medium">Invalid nama!</span> Nama tidak boleh menggunakan ANGKA.
+                </div>
+            </div>`;
+        return false;
+    }
 
     if (phoneNumber.length < 11 || phoneNumber.length > 13) {
         containervalidasi.innerHTML = `
@@ -167,13 +182,15 @@
                 </svg>
                 <span class="sr-only">Info</span>
                 <div>
-                    <span class="font-medium">Invalid phone number!</span> Please enter a phone number with a length between 11 and 13 characters.
+                    <span class="font-medium">Invalid No HP!</span> No HP tidak boleh kurang dari 11 dan lebih dari 13.
                 </div>
             </div>`;
         return false;
     }
 
-    containervalidasi.innerHTML = ''; // Clear the validation message if the phone number is valid
+    
+
+    containervalidasi.innerHTML = ''; // Clear the validation message if the input is valid
     return true;
 }
 </script>

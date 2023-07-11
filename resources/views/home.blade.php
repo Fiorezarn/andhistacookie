@@ -63,9 +63,9 @@
     <h1 class="mt-4 text-4xl font-bold text-center">Our Product</h1>
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 m-10">
         @foreach ($product as $item)
-        <div>
+        <div class="img-product">
             <a href="/detailproduct/{{ $item->id }}">
-                <img class="h-auto max-w-full rounded-lg" src="{{ url('fotokue/' . $item->photo) }}" alt="{{ $item->namakue }}">
+                <img class="h-auto rounded-lg" src="{{ url('fotokue/' . $item->photo) }}" alt="{{ $item->namakue }}">
             </a>
         </div>
         @endforeach
@@ -73,7 +73,7 @@
 
 </section>
 
-<section id="about-us">
+<section id="about-us" class="mt-40">
     <div class="flex justify-center m-10">
         <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-5xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
             <img class="object-cover w-full ml-10 rounded-t-lg h-96 md:h-auto md:w-96 md:rounded-none md:rounded-l-lg" src="{{ asset('img/jumbotron.jpg') }}" alt="">
